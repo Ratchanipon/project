@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GetProjectProvider } from '../../providers/project/get-project';
 
 /**
  * Generated class for the ProjectPage page.
@@ -15,7 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProjectPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  projectList:any;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public project: GetProjectProvider) {
+
+              this.project.getProject().then(data => {
+                this.projectList = data;
+                console.log(this.projectList);
+                
+              })  
+
+
   }
 
   ionViewDidLoad() {
