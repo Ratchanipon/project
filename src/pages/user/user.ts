@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the UserPage page.
@@ -15,11 +16,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UserPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  name:string='';
+  email:string='';
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams) {
+
+               let user=localStorage.getItem('user_id'); 
+
+               if(user!=null){
+                this.name = localStorage.getItem('name');
+                this.email = localStorage.getItem('email');
+               }
+              
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
   }
+
 
 }

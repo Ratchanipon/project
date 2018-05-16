@@ -5,12 +5,12 @@ import { HomePage } from '../home/home';
 import { ProjectPage } from '../project/project';
 import { ArticlePage } from '../article/article';
 import { UserPage } from '../user/user';
+import { CategoryPage } from '../category/category';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
   tab1Root = HomePage;
   tab2Root = "ProjectPage";
   tab3Root = "VideoPage";

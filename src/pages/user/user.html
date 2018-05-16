@@ -7,12 +7,57 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>user</ion-title>
+    <ion-title>user
+    
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+        
+            <ion-card-header>
+                
+                    <ion-item>
+                      
+                      <h2 *ngIf="name!=''">{{name}}</h2>
+                      <h2 *ngIf="email!=''">{{email}}</h2>
+                    </ion-item>
+                
+             <div align="center">
+              <button ion-button small color="secondary" round navPush="LoginPage">เข้าสู่ระบบ</button>
+              <button ion-button small color="Default" round navPush ="RegisterPage"> สมัครสามชิก</button>
+            </div>
 
+            <!-- <div align="center">
+            <button ion-button color="danger" clear>แก้ไขข้อมูล</button>
+          </div>
+           -->
+            </ion-card-header>
+          
+            <ion-list>
+              <button ion-item>
+                <ion-icon name="heart" item-start></ion-icon>
+                ที่ฉันถูกใจ
+              </button>
+          
+              <button ion-item navPush="MyarticlePage">
+                <ion-icon name="ios-book" item-start ></ion-icon>
+                บทความของฉัน
+              </button>
+          
+              <button ion-item navPush="NotificationsPage">
+                <ion-icon name="md-notifications-outline" item-start></ion-icon>
+                การแจ้งเตือน
+              </button>
+          
+              <button ion-item navPush= "SetingPage">
+                <ion-icon name="settings" item-start></ion-icon>
+                ตั้งค่า
+              </button>
+              
+            </ion-list>
+          
+        
 </ion-content>
