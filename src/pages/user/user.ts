@@ -26,7 +26,7 @@ export class UserPage {
 
                if(user!=null){
                 this.name = localStorage.getItem('name');
-                this.email = localStorage.getItem('email');
+                this.email = localStorage.getItem('email');     
                }
               
   }
