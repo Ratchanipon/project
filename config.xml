@@ -11,7 +11,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-intent href="https://*youtube.com/*"/>
+    <allow-navigation href="https://*youtube.com/*" />
+    <allow-navigation href="https://*google.com/*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -82,4 +83,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.3.3">
+        <variable name="API_KEY_FOR_ANDROID" value="(API_KEY_FOR_ANDROID)" />
+    </plugin>
 </widget>

@@ -4,6 +4,8 @@ import { GetProjectProvider } from '../../providers/project/get-project';
 import { GetProjectByProvinceProvider } from '../../providers/project/get-projectByProvice';
 import { GetProjectByKeyWordProvider } from '../../providers/project/get-projectByKeyWord';
 import { CategoryProvider } from '../../providers/category/category';
+import { ProjectDatabaseProvider } from '../../providers/project-database/project-database';
+import { Project } from '../../model/interface/project';
 
 /**
  * Generated class for the ProjectPage page.
@@ -19,7 +21,7 @@ import { CategoryProvider } from '../../providers/category/category';
 })
 export class ProjectPage {
 
-  projectList:any;
+  projectList:Project[];
 
   category:any;
 
@@ -29,19 +31,11 @@ export class ProjectPage {
               public project: GetProjectProvider,
               public projectByProvince: GetProjectByProvinceProvider,
               public projectByKeyWord: GetProjectByKeyWordProvider,
+              private projectDatabase:ProjectDatabaseProvider,
               public cate: CategoryProvider) {
 
-              this.project.getProject().then((data:any) => {
-                this.projectList = data;
-                console.log(this.projectList);
-                
-
-                console.log("images----",this.projectList.images);
-
-                this.cate.getCategory().then(data => {
-                  this.category = data;
-                })
-                
+              this.projectDatabase.getList().subscribe(list=>{
+                this.projectList = list;
               })  
 
 

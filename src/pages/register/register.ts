@@ -5,6 +5,7 @@ import { User } from '../../model/user';
 import { RegisterProvider } from '../../providers/user/register';
 import { TabsPage } from '../tabs/tabs';
 import { UserPage } from '../user/user';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the RegisterPage page.
@@ -26,6 +27,7 @@ export class RegisterPage {
               public app: App,
               public formBuilder: FormBuilder,
               //public addUser: AddUserProvider,
+              private angularFireAuth:AngularFireAuth,
               public toastCtrl: ToastController,
               public regis: RegisterProvider){
 
@@ -40,46 +42,63 @@ export class RegisterPage {
   form(){
 
     this.user = this.formBuilder.group({
-      name:['ุกากากากก',Validators.compose([Validators.required,
-                                         Validators.minLength(3)])],
-      last_name:['กกกกกก',Validators.compose([Validators.required,
-                                            Validators.minLength(3)])],
-      password:['11111111',Validators.compose([Validators.required,
+      name:['',Validators.compose([Validators.required,
+                                         Validators.minLength(3),
+                                         Validators.maxLength(30)
+                                        ])],
+      last_name:['',Validators.compose([Validators.required,
+                                        Validators.minLength(3),
+                                        Validators.maxLength(30)
+                                        ])],
+      password:['',Validators.compose([Validators.required,
                                                   Validators.minLength(8),
                                                   Validators.pattern("[a-zA-Z0-9.-_*#@$%&!]{1,}")])],
-      con_password:['11111111',Validators.compose([Validators.required,
+      con_password:['',Validators.compose([Validators.required,
                                                     Validators.minLength(8),
                                                     Validators.pattern("[a-zA-Z0-9.-_*#@$%&!]{1,}")])],
-      email:['f@gmail',Validators.compose([Validators.required,
+      email:['',Validators.compose([Validators.required,
                                                   Validators.email])],
-      age:['25',Validators.compose([Validators.required])],
-      sex:['ชาย',Validators.compose([Validators.required])]
+      age:['',Validators.compose([Validators.required])],
+      sex:['',Validators.compose([Validators.required])]
       
     })
 
   }
   register(user:User){
-    console.log('user===',this.user.value);
     
-    this.regis.Register(this.user.value).then((data:User) => {
 
-      if(data != null){
-        this.addUserSuccess();
+    let form:User = this.user.value;
+    console.log('user===',form);
 
-        localStorage.setItem("user_id",data.user_id);
-        localStorage.setItem("email",data.email);
-        localStorage.setItem("name",data.name);
-        // localStorage.setItem("last_name",data.last_name);
-
-        this.navCtrl.setRoot(UserPage);    
+    this.angularFireAuth.auth.createUserWithEmailAndPassword(form.email,form.password).then(profile=>{
+      this.regis.createUser(profile.uid,form).then(res=>{
+        this.navCtrl.setRoot("UserPage")
         const root = this.app.getRootNav();
-        root.popToRoot();
-      }
-      else{
-        this.addUserNon_Success();
-      }
+              root.popToRoot();
+      })
+      
+    }).catch(e=>{
+      this.addUserNon_Success();
+    }) 
+    // this.regis.Register(this.user.value).then((data:User) => {
 
-    });
+    //   if(data != null){
+    //     this.addUserSuccess();
+
+    //     localStorage.setItem("user_id",data.user_id);
+    //     localStorage.setItem("email",data.email);
+    //     localStorage.setItem("name",data.name);
+    //     // localStorage.setItem("last_name",data.last_name);
+
+    //     this.navCtrl.setRoot(UserPage);    
+    //     const root = this.app.getRootNav();
+    //     root.popToRoot();
+    //   }
+    //   else{
+    //     this.addUserNon_Success();
+    //   }
+
+    // });
   }
 
   addUserSuccess() {

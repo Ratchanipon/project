@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../model/user';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 
 /*
   Generated class for the UserProvider provider.
@@ -11,7 +12,7 @@ import { User } from '../../model/user';
 @Injectable()
 export class LoginProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient,private database:AngularFireDatabase) {
     console.log('Hello LoginProvider Provider');
   }
 
@@ -47,6 +48,11 @@ extacObject(data){
   //console.log(obj);
   return obj;
 }
+
+getUser(id){
+  return this.database.object('User/'+id);
+}
+
 
 
 }

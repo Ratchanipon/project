@@ -2,6 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../model/user';
 
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { FirebaseListFactoryOpts } from 'angularfire2/database-deprecated/interfaces';
+
+
 /*
   Generated class for the UserProvider provider.
 
@@ -11,7 +15,10 @@ import { User } from '../../model/user';
 @Injectable()
 export class RegisterProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    private database:AngularFireDatabase
+  ) {
     console.log('Hello RegisterProvider Provider');
   }
 
@@ -41,6 +48,10 @@ extacObject(data){
   let obj = JSON.parse(json);
   //console.log(obj);
   return obj;
+}
+
+createUser(id,User){
+  return this.database.object('User/'+id).set(User);
 }
 
 

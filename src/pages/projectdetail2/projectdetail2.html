@@ -6,60 +6,70 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>โครงการ</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding class="tutorial-page">
-<ion-card>
-    <ion-slides pager style="height: 30%; margin-top: 20px;" >
-        <ion-slide *ngFor="let slide of slides" >
-          <img [src]="slide.image" class="slide-image"/>
-        </ion-slide>      
-      </ion-slides>
- <br>
-  <p>ชื่อ: {{name}} </p>
-  <p>รายละเอียด: {{detail}}</p>
+<ion-content>
 
-  <ion-item>
-    <ion-icon name="cart" item-start ></ion-icon>
-    <h2>ร้านค้า</h2>
-    <h2 style="color: darkgrey">{{store}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon name="briefcase" item-start ></ion-icon>
-    <h2>ที่พักใกล้เคียง: </h2>
-    <h2 style="color: darkgrey;">{{hostelry}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon name="plane" item-start ></ion-icon>
-    <h2>สถานที่ท่องเที่ยวใกล้เคียง: </h2>
-    <p style="color: darkgrey;">{{Travel_program}}</p>
-  </ion-item>
-
-</ion-card>
-<ion-card *ngFor="let item of videoList">
-
-  <iframe width="100%" 
-          height="220" 
-          [src]="trustedVideoUrl ? trustedVideoUrl : null" 
-          (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null"
-          frameborder="0"
-          allowfullscreen></iframe>
-  <ion-card-content>
-    <ion-card-title>
-      {{item.video}}
-      </ion-card-title>
+  <ion-row background-color>
+    <ion-col col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4>
+      <ion-card text-left>
    
-  </ion-card-content>
+        <div card-image>
+          <ion-slides pager style="height: 30%; margin-top: 0px;" card-image>
+              <ion-slide *ngFor="let slide of project.gallery" >
+                  
+                    <img [src]="slide.image" class="slide-image"/>
+                    
+              </ion-slide>      
+          </ion-slides>
+        </div>
+  
+          <ion-card-content>
+            <ion-card-title>
+              <h1 card-subtitle><b>{{project.name}}</b></h1>
+              <p card-body-text>{{project.detail}}</p>
+            </ion-card-title>
+          </ion-card-content>
 
-</ion-card>
+          <ion-item>
+            <ion-icon name="cart" item-start ></ion-icon>
+            <h2>ร้านค้า</h2>
+            <h2 style="color: darkgrey">{{project.store}}</h2>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="briefcase" item-start ></ion-icon>
+            <h2>ที่พักใกล้เคียง: </h2>
+            <h2 style="color: darkgrey;">{{project.hostelry}}</h2>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="plane" item-start ></ion-icon>
+            <h2>สถานที่ท่องเที่ยวใกล้เคียง: </h2>
+            <p style="color: darkgrey;">{{project.travel}}</p>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  <ion-card>
+    
+  </ion-card>
+  <iframe class="e2e-iframe-trusted-src" width="300" height="200" [src]="link"></iframe>
+  <iframe class="e2e-iframe-trusted-src" width="300" height="200" src="https://www.youtube.com/embed/2JeKfQ2r2r8"></iframe>
+
+
+  <!-- <div #map style="height: 100%"></div> -->
+
+
+
 
 </ion-content>
+
 
 

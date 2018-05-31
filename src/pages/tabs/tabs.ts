@@ -6,6 +6,7 @@ import { ProjectPage } from '../project/project';
 import { ArticlePage } from '../article/article';
 import { UserPage } from '../user/user';
 import { CategoryPage } from '../category/category';
+import { VideoPage } from '../video/video';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -15,7 +16,7 @@ export class TabsPage {
   tab2Root = "ProjectPage";
   tab3Root = "VideoPage";
   tab4Root = "ArticlePage";
-  tab5Root = UserPage;
+  tab5Root = "UserPage";
 
   constructor() {
 

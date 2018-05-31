@@ -30,9 +30,11 @@
 
       </ion-list>
       <div align="center">
-        <button ion-button color="secondary" round full type="submit" [disabled]="!user.valid">เข้าสู่ระบบ</button>
-        <button ion-button clear>ลืมรหัสผ่าน</button>
+        <button ing ion-button color="blue" round full type="submit" [disabled]="!user.valid">เข้าสู่ระบบ</button>
       </div>
   </form>
+  <div align="center">
+    <button ion-button clear (click)="fogot()" >ลืมรหัสผ่าน</button>
+  </div>
 
 </ion-content>

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>user
+  <ion-navbar color="primary">
+    <ion-title>บัญชีผู้ใช้
     
     </ion-title>
   </ion-navbar>
@@ -16,47 +16,59 @@
 
 
 <ion-content padding>
-        
             <ion-card-header>
-                
-                    <ion-item>
+                      <ion-item *ngIf="name!=''">
+                        <ion-grid>
+                            <ion-row>
+                              <ion-col col-12><h2 *ngIf="name!=''">{{name}}</h2></ion-col>
+                            </ion-row>
+                            <ion-row>
+                              <ion-col col-11><h2 *ngIf="email!=''">{{email}}</h2></ion-col>
+                              <ion-col col-1><ion-icon *ngIf="email!=''" name="create" ></ion-icon></ion-col>
+                            </ion-row>                             
+                              
+                          </ion-grid>
                       
-                      <h2 *ngIf="name!=''">{{name}}</h2>
-                      <h2 *ngIf="email!=''">{{email}}</h2>
                     </ion-item>
                 
-             <div align="center">
-              <button ion-button small color="secondary" round navPush="LoginPage">เข้าสู่ระบบ</button>
-              <button ion-button small color="Default" round navPush ="RegisterPage"> สมัครสามชิก</button>
+            <div align="center" *ngIf="user_id==null">
+              <img  width="120" height="100" [src]="chosenPicture || placeholder" onerror="this.src='assets/images/logo/user.png'"/> 
+                <br><br>
+              <button *ngIf="checkLogin==false" ion-button small color="blue" round navPush="LoginPage">เข้าสู่ระบบ</button>
+              <button *ngIf="checkLogin==false" ion-button small color="orage" round navPush ="RegisterPage"> สมัครสามชิก</button>
             </div>
+            <br>
 
-            <!-- <div align="center">
-            <button ion-button color="danger" clear>แก้ไขข้อมูล</button>
-          </div>
-           -->
             </ion-card-header>
           
-            <ion-list>
-              <button ion-item>
+            <ion-list >
+              <button ion-item  (click)="checkUserId(1)">
                 <ion-icon name="heart" item-start></ion-icon>
                 ที่ฉันถูกใจ
               </button>
           
-              <button ion-item navPush="MyarticlePage">
+              <button ion-item (click)="checkUserId(2)">
                 <ion-icon name="ios-book" item-start ></ion-icon>
                 บทความของฉัน
               </button>
           
-              <button ion-item navPush="NotificationsPage">
+              <button ion-item (click)="checkUserId(3)">
                 <ion-icon name="md-notifications-outline" item-start></ion-icon>
                 การแจ้งเตือน
               </button>
           
-              <button ion-item navPush= "SetingPage">
+              <!-- <button ion-item navPush= "SetingPage">
                 <ion-icon name="settings" item-start></ion-icon>
                 ตั้งค่า
-              </button>
+              </button> -->
               
+              <div *ngIf="user_id!=null" color="list">
+                <button ion-item (click)= "logout()" >
+                  <ion-icon name="settings" item-start></ion-icon>
+                  ออกจากระบบ
+                 </button>
+              </div>
+
             </ion-list>
           
         

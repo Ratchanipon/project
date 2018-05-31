@@ -2,7 +2,20 @@ page-home {
 
     
 
-    .item{
-        background-color: white;
-    }
+    // .item{
+    //     background-color: white;
+    // }
+
+    [background-color] {
+        background-color: #ffffff;
+        
+      }
+
+    ion-card {
+        box-shadow: none !important;
+        border-radius: $border-radius !important;
+    
+      }
+      
+
 }

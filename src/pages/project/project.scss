@@ -17,13 +17,23 @@ page-project {
         // }
       
         .card-subtitle {
-          font-size: 1.0em;
+          font-size: 3.5em;
           position: absolute;
           top: 52%;
           width: 100%;
           color: #fff;
         }
       
+      }
+
+      [background-color] {
+        background-color: #5e8bd5;
+        
+      }
+      ion-card {
+        box-shadow: none !important;
+        border-radius: $border-radius !important;
+    
       }
 
 }
