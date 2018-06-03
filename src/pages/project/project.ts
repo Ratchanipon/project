@@ -6,6 +6,8 @@ import { GetProjectByKeyWordProvider } from '../../providers/project/get-project
 import { CategoryProvider } from '../../providers/category/category';
 import { ProjectDatabaseProvider } from '../../providers/project-database/project-database';
 import { Project } from '../../model/interface/project';
+import { CatrgoryDatabaseProvider } from '../../providers/catrgory-database/catrgory-database';
+import { Category } from '../../model/interface/category';
 
 /**
  * Generated class for the ProjectPage page.
@@ -22,8 +24,10 @@ import { Project } from '../../model/interface/project';
 export class ProjectPage {
 
   projectList:Project[];
+  keyword='';
+  categoryList:Category[];
 
-  category:any;
+  section:string="index";
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -32,17 +36,45 @@ export class ProjectPage {
               public projectByProvince: GetProjectByProvinceProvider,
               public projectByKeyWord: GetProjectByKeyWordProvider,
               private projectDatabase:ProjectDatabaseProvider,
-              public cate: CategoryProvider) {
-
-              this.projectDatabase.getList().subscribe(list=>{
-                this.projectList = list;
-              })  
-
-
-  }
+              private catrgoryDatabase:CatrgoryDatabaseProvider
+            ) {
+              this.section = "index";
+              this.getList(); 
+              this.getCatList(); 
+            }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectPage');
+  }
+
+  getProjectCat(category:Category){
+    console.log(category);
+    this.projectDatabase.getProjectCat(category.name).subscribe(list=>{
+      this.projectList = list;
+      console.log(this.projectList);
+      
+    })    
+    this.section = 'list';    
+  }
+  
+  gotoCat(){
+    this.section = "index";
+  }
+
+  getCatList(){
+    this.catrgoryDatabase.getList().subscribe(list=>{
+      this.categoryList = list;
+      console.log(this.categoryList);
+      
+    })
+  }
+
+  getList(){
+    this.projectDatabase.getList().subscribe(list=>{
+      this.projectList = list;
+      console.log(list);
+      
+    }) 
   }
 
   showDetial(item){
@@ -51,13 +83,19 @@ export class ProjectPage {
     
   }
 
-  search(ev: any){
-
-    let keyword = ev.target.value;
-    console.log(keyword);
-    this.projectByKeyWord.getProjecByKeyWord(keyword).then((data:any) => {
-      this.projectList = data;
-    })
+  search(keyword:string){  
+    if(keyword!=''){
+      this.projectDatabase.search(keyword).subscribe(list=>{
+        this.projectList = list;
+        console.log(list);
+        
+      })  
+      // this.projectList = this.projectList.filter(project=>project.name === keyword);
+         
+    }else{
+      this.getList();
+    }  
+    this.section = 'list';
     
   }
 

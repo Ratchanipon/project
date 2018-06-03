@@ -37,14 +37,14 @@ import { CatrgoryDatabaseProvider } from '../providers/catrgory-database/catrgor
 import { ArticleDatabaseProvider } from '../providers/article-database/article-database';
 import { VideoDatabaseProvider } from '../providers/video-database/video-database';
 import { PipesModule } from '../pipes/pipes.module';
+import { CreatarticleProvider } from '../providers/creatarticle/creatarticle';
+import { UserDatabaseProvider } from '../providers/user-database/user-database';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage,
-    
-    
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -66,9 +66,8 @@ import { PipesModule } from '../pipes/pipes.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
-    
+    HomePage
   ],
   providers: [
     StatusBar,
@@ -89,6 +88,8 @@ import { PipesModule } from '../pipes/pipes.module';
     CatrgoryDatabaseProvider,
     ArticleDatabaseProvider,
     VideoDatabaseProvider,
+    CreatarticleProvider,
+    UserDatabaseProvider,
     
   ]
 })
