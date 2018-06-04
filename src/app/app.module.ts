@@ -39,6 +39,7 @@ import { VideoDatabaseProvider } from '../providers/video-database/video-databas
 import { PipesModule } from '../pipes/pipes.module';
 import { CreatarticleProvider } from '../providers/creatarticle/creatarticle';
 import { UserDatabaseProvider } from '../providers/user-database/user-database';
+import { ProjectLikeProvider } from '../providers/project-like/project-like';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { UserDatabaseProvider } from '../providers/user-database/user-database';
     VideoDatabaseProvider,
     CreatarticleProvider,
     UserDatabaseProvider,
+    ProjectLikeProvider,
     
   ]
 })
